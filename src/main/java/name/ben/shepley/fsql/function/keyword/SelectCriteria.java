@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 public interface SelectCriteria {
     public abstract String[] getColumns();
 
-    public static class SelectCriteriaClass implements SelectCriteria {
+    public static class byClass implements SelectCriteria {
         private String[] columns;
-        public SelectCriteriaClass(Class clazz) {
+        public byClass(Class clazz) {
             if (clazz != null) {
                 this.columns = Arrays.stream(clazz.getDeclaredFields()).map(Field::getName).toArray(String[]::new);
             } else {
@@ -23,9 +23,9 @@ public interface SelectCriteria {
         }
     }
 
-    public static class SelectCriteriaSql implements SelectCriteria {
+    public static class bySql implements SelectCriteria {
         private String[] columns;
-        public SelectCriteriaSql(String sql) {
+        public bySql(String sql) {
             if (sql != null) {
                 String[] splitResults = sql.split(",");
                 this.columns = Stream.of(splitResults).map(String::trim).toArray(String[]::new);

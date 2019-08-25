@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.harness.model;
+package name.ben.shepley.fsql._harness.model;
 
 public class Department {
     private Integer id;
