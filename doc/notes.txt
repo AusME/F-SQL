@@ -1,0 +1,46 @@
+/* The goal*/
+Table t = new Table();
+Stream<Table> results =
+   QueryFactory *Static Method*
+       .select(t)
+       .from(t)
+       .where(new SqlPredicate(t.getName(), 'eq', 'Ben'))
+       .done();
+       .execute(connection);
+
+
+QueryFactory -> Produces Queries
+    #select(Object)
+    #selectFrom(Object)
+    #select(String, Integer)
+    #select(String, String)
+    #select(String[])
+    #insert(object)
+    #insert(String[], object[]);
+
+Query
+    sqlOperation
+    sqlDialect
+    executionContext
+
+
+Select implements SqlOperation
+    columns
+    table
+
+SelectBuilder implements SqlOperationBuilder
+    selectQuery
+    #select()
+    #from()
+    #where()
+    #execute()
+
+
+
+QueryBuilder
+    #setExecutionContext
+    #setSqlDialect
+    #setSqlOperation
+
+
+QueryExecutionContext -> All details necessary to execute and return Query
