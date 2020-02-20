@@ -1,8 +1,8 @@
 package name.ben.shepley.fsql.ansi.sqlModel;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
 
 public interface SqlModel {
     public abstract String toSql();
-    public abstract ConcurrentHashMap<Integer, Object> getParameters();
+    public abstract Map<Integer, Object> getParameters();
 }

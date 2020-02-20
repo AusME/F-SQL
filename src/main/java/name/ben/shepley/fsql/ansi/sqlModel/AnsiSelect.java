@@ -1,39 +1,38 @@
 package name.ben.shepley.fsql.ansi.sqlModel;
 
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
 
 public class AnsiSelect implements SqlModel {
     /* Immutable */
     private final String SQL;
-
-    /* Mutable */
-    private final ConcurrentHashMap<Integer, Object> PARAMETERS;
+    private final Map<Integer, Object> PARAMETERS;
 
     /* Constructor */
-    private AnsiSelect(String sql, ConcurrentHashMap<Integer, Object> parameters) {
+    private AnsiSelect(String sql, Map<Integer, Object> parameters) {
         this.SQL = sql;
-        this.PARAMETERS = parameters;
+        this.PARAMETERS = Collections.unmodifiableMap(parameters);
     }
 
     @Override
     public String toSql() {
-        return null;
+        return this.SQL;
     }
 
     @Override
-    public ConcurrentHashMap<Integer, Object> getParameters() {
-        return null;
+    public Map<Integer, Object> getParameters() {
+        return this.PARAMETERS;
     }
 
     public static class AnsiSelectBuilder  {
         /* Keywords */
         private static final String SELECT = "SELECT";
         private static final String FROM = "FROM";
+        private static final String WHERE = "WHERE";
 
         /* Data */
-        private Set<String> columns;
-        private Set<String> tables;
+        private Set<String> columns = new HashSet<>();
+        private Set<String> tables = new HashSet<>();
+        private String whereConditions = "";
 
         /* Constructor */
         private AnsiSelectBuilder() { }
@@ -44,10 +43,21 @@ public class AnsiSelect implements SqlModel {
         }
 
         public SqlModel build() {
-            return new AnsiSelect("", null);
+            String sql =
+                    SELECT + String.join(", ", this.columns) + "\n" +
+                    FROM + String.join(", ", this.tables) + "\n";
+            return new AnsiSelect(sql, Collections.EMPTY_MAP);
         }
 
         /* Data Methods */
+        public AnsiSelectBuilder select(String... columns) {
+            this.columns.addAll(Arrays.asList(columns));
+            return this;
+        }
 
+        public AnsiSelectBuilder from(String... tables) {
+            this.tables.addAll(Arrays.asList(tables));
+            return this;
+        }
     }
 }
