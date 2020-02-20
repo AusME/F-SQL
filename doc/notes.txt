@@ -1,3 +1,5 @@
+https://dzone.com/articles/java-dynamic-proxy
+
 /* The goal*/
 Table t = new Table();
 Stream<Table> results =
