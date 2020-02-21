@@ -6,7 +6,7 @@ F-SQL is intended to be fail safe and work around limitations in SQL, and in Jav
 F-SQL primarily consists of THREE parts:
 1) The Model. A builder that builds SQL, and parameters designed around specific DBMS implementations.
 2) The QueryEngine. A singleton whose purpose it is to manage execution of queries.
-3) The ResultsObject. An object which stores the ResultSet making transformations on that data easier.
+3) The QueryResponse. An object which stores the ResultSet making transformations on that data easier.
 
 ### Examples
 Example Code for Querying by String:
