@@ -1,8 +1,8 @@
-package name.ben.shepley.fsql.ansi.sqlModel;
+package name.ben.shepley.fsql;
 
 import java.util.Map;
 
-public interface SqlModel {
+public interface Query {
     public abstract String toSql();
     public abstract Map<Integer, Object> getParameters();
 }

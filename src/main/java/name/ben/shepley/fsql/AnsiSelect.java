@@ -1,8 +1,8 @@
-package name.ben.shepley.fsql.ansi.sqlModel;
+package name.ben.shepley.fsql;
 
 import java.util.*;
 
-public class AnsiSelect implements SqlModel {
+public class AnsiSelect implements Query {
     /* Immutable */
     private final String SQL;
     private final Map<Integer, Object> PARAMETERS;
@@ -42,7 +42,7 @@ public class AnsiSelect implements SqlModel {
             return new AnsiSelectBuilder();
         }
 
-        public SqlModel build() {
+        public Query build() {
             String sql =
                     SELECT + String.join(", ", this.columns) + "\n" +
                     FROM + String.join(", ", this.tables) + "\n";

@@ -2,19 +2,15 @@ package name.ben.shepley.fsql;
 
 import org.testng.annotations.Test;
 
-import java.util.stream.Stream;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class SqlBuilderTest {
     @Test
-    public void testSelect() {
-        Table t = new Table();
-//        Stream<Table> results =
-//                new QueryFactory().select(t).setColumns("");
-
-    }
-
-    @Test
-    public void testSelect1() {
-        new Object().equals("");
+    public void testSelect() throws SQLException {
+        SampleMySQLDatabase sampleMySQLDatabase = new SampleMySQLDatabase();
+        Connection connection = SampleMySQLDatabase.getConnection();
+        System.out.println("Yay!");
+        connection.close();
     }
 }

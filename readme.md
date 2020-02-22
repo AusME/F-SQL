@@ -4,24 +4,24 @@ F-SQL is intended to be fail safe and work around limitations in SQL, and in Jav
 
 ### Description
 F-SQL primarily consists of THREE parts:
-1) The Model. A builder that builds SQL, and parameters designed around specific DBMS implementations.
-2) The QueryEngine. A singleton whose purpose it is to manage execution of queries.
-3) The QueryResponse. An object which stores the ResultSet making transformations on that data easier.
+1) QueryEngine: A singleton which stores Database details to assist in query execution management.
+2) Query: A built object (which stores SQL, and parameters). This object is designed around specific DBMS implementations to support specific DBMS features.
+3) QueryResult: A object which stores the resulting information from the query execution.
 
 ### Examples
 Example Code for Querying by String:
 
     public void someServiceMethod() {
-        SqlModel select =
+        Query select =
             SelectBuilder.getBuilder()
                 .select("column_one")
                 .from("table")
                 .build();
 
-        ResultsObject results = this.queryEngine.execute(select);
-        List<Entity> entities = results.collect(SqlCollector.toList());
-        Stream<Entity> stream = results.collect(SqlCollector.toStream());
-        Integer i = results.collect(SqlCollector.toInteger());
+        queryResult result = this.queryEngine.execute(select);
+        List<Entity> entities = result.collect(SqlCollector.toList());
+        Stream<Entity> stream = result.collect(SqlCollector.toStream());
+        Integer i = result.collect(SqlCollector.toInteger());
     }
 
 Too wordy? Since nearly everything in the framework uses the builder pattern, feel free to minimize. Or better yet, create your own singleton to store common ways of getting data from the database.
