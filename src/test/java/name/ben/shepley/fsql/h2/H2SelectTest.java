@@ -1,7 +1,7 @@
 package name.ben.shepley.fsql.h2;
 
 import name.ben.shepley.fsql.Query;
-import name.ben.shepley.fsql.database.connection.MySQLDatabase;
+import name.ben.shepley.fsql.database.connection.H2Database;
 import org.testng.annotations.Test;
 
 import java.sql.*;
@@ -9,10 +9,10 @@ import java.sql.*;
 public class H2SelectTest {
     @Test
     public void testSelect() {
-        MySQLDatabase.init();
-        try (Connection connection = MySQLDatabase.getConnection()) {
+        H2Database.init();
+        try (Connection connection = H2Database.getConnection()) {
             Query selectOrders = H2Select.H2SelectBuilder.builder()
-                .select("ord_num")
+                .select("*")
                 .from("orders")
                 .build();
 

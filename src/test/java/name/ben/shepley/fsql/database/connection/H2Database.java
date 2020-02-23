@@ -9,16 +9,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MySQLDatabase {
+public class H2Database {
     private static final String JDBC_DRIVER = "org.h2.Driver";
     private static final String DB_URL = "jdbc:h2:mem:ben;";
-    private static final String DB_OPTIONS = "DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;IGNORECASE=TRUE";
+    private static final String DB_OPTIONS = "DB_CLOSE_DELAY=-1;IGNORECASE=TRUE";
 
     private static final String USER = "sa";
     private static final String PASS = "";
 
     public static void init() {
-        MySQLDatabase.setupDatabase();
+        H2Database.setupDatabase();
     }
 
     public static Connection getConnection() {
@@ -61,8 +61,8 @@ public class MySQLDatabase {
     }
 
     private static String getDatabaseSchemaAndData() {
-        Class<MySQLDatabase> clazz = MySQLDatabase.class;
-        InputStream inputStream = clazz.getResourceAsStream("/SampleMySQlDatabase.sql");
+        Class<H2Database> clazz = H2Database.class;
+        InputStream inputStream = clazz.getResourceAsStream("/SampleH2Database.sql");
 
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -72,7 +72,7 @@ public class MySQLDatabase {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Unable to find Sample Database.");
+            throw new RuntimeException("Unable to find Sample Database schema definition.");
         }
 
         return resultStringBuilder.toString();
