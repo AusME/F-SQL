@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql;
+package name.ben.shepley.fsql.database.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,16 +9,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SampleMySQLDatabase {
+public class MySQLDatabase {
     private static final String JDBC_DRIVER = "org.h2.Driver";
     private static final String DB_URL = "jdbc:h2:mem:ben;";
-    private static final String DB_OPTIONS = "MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;IGNORECASE=TRUE";
+    private static final String DB_OPTIONS = "DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;IGNORECASE=TRUE";
 
     private static final String USER = "sa";
     private static final String PASS = "";
 
-    public SampleMySQLDatabase() {
-        setupDatabase();
+    public static void init() {
+        MySQLDatabase.setupDatabase();
     }
 
     public static Connection getConnection() {
@@ -31,32 +31,17 @@ public class SampleMySQLDatabase {
         }
     }
 
-    public static String getDatabaseSchemaAndData() {
-        Class<SampleMySQLDatabase> clazz = SampleMySQLDatabase.class;
-        InputStream inputStream = clazz.getResourceAsStream("/SampleMySQlDatabase.sql");
-
-        StringBuilder resultStringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                resultStringBuilder.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Unable to find Sample Database.");
-        }
-
-        return resultStringBuilder.toString();
-    }
-
-    public static void setupDatabase() {
+    private static void setupDatabase() {
         Connection connection = getConnection();
         Statement statement = null;
         try {
+            connection.setAutoCommit(false);
+
             statement = connection.createStatement();
             String sql = getDatabaseSchemaAndData();
             statement.executeUpdate(sql);
 
+            connection.commit();
             statement.close();
             connection.close();
         } catch(SQLException se) {
@@ -73,5 +58,23 @@ public class SampleMySQLDatabase {
                 se.printStackTrace();
             }
         }
+    }
+
+    private static String getDatabaseSchemaAndData() {
+        Class<MySQLDatabase> clazz = MySQLDatabase.class;
+        InputStream inputStream = clazz.getResourceAsStream("/SampleMySQlDatabase.sql");
+
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                resultStringBuilder.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to find Sample Database.");
+        }
+
+        return resultStringBuilder.toString();
     }
 }

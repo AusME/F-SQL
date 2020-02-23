@@ -1,14 +1,16 @@
-package name.ben.shepley.fsql;
+package name.ben.shepley.fsql.h2;
+
+import name.ben.shepley.fsql.Query;
 
 import java.util.*;
 
-public class AnsiSelect implements Query {
+public class H2Select implements Query {
     /* Immutable */
     private final String SQL;
     private final Map<Integer, Object> PARAMETERS;
 
     /* Constructor */
-    private AnsiSelect(String sql, Map<Integer, Object> parameters) {
+    private H2Select(String sql, Map<Integer, Object> parameters) {
         this.SQL = sql;
         this.PARAMETERS = Collections.unmodifiableMap(parameters);
     }
@@ -23,7 +25,7 @@ public class AnsiSelect implements Query {
         return this.PARAMETERS;
     }
 
-    public static class AnsiSelectBuilder  {
+    public static class H2SelectBuilder {
         /* Keywords */
         private static final String SELECT = "SELECT";
         private static final String FROM = "FROM";
@@ -35,27 +37,27 @@ public class AnsiSelect implements Query {
         private String whereConditions = "";
 
         /* Constructor */
-        private AnsiSelectBuilder() { }
+        private H2SelectBuilder() { }
 
         /* Builder Methods */
-        public static AnsiSelectBuilder builder() {
-            return new AnsiSelectBuilder();
+        public static H2SelectBuilder builder() {
+            return new H2SelectBuilder();
         }
 
         public Query build() {
             String sql =
-                    SELECT + String.join(", ", this.columns) + "\n" +
-                    FROM + String.join(", ", this.tables) + "\n";
-            return new AnsiSelect(sql, Collections.EMPTY_MAP);
+                    SELECT + " " + String.join(", ", this.columns) + "\n" +
+                    FROM + " " + String.join(", ", this.tables) + "\n";
+            return new H2Select(sql, Collections.EMPTY_MAP);
         }
 
         /* Data Methods */
-        public AnsiSelectBuilder select(String... columns) {
+        public H2SelectBuilder select(String... columns) {
             this.columns.addAll(Arrays.asList(columns));
             return this;
         }
 
-        public AnsiSelectBuilder from(String... tables) {
+        public H2SelectBuilder from(String... tables) {
             this.tables.addAll(Arrays.asList(tables));
             return this;
         }
