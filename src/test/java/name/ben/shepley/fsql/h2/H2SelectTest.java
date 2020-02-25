@@ -1,7 +1,8 @@
 package name.ben.shepley.fsql.h2;
 
-import name.ben.shepley.fsql.Query;
+import name.ben.shepley.fsql.framework.Query;
 import name.ben.shepley.fsql.database.connection.H2Database;
+import name.ben.shepley.fsql.h2.query.H2Select;
 import org.testng.annotations.Test;
 
 import java.sql.*;
