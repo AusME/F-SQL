@@ -15,25 +15,24 @@ public class H2Select implements Query, SqlParameter {
     private ExecutionContext executionContext;
 
     /* SqlCommand */
-    protected Map<Integer, Object> parameters = new HashMap<>();
+    protected Map<Integer, Object> sqlParameters = new HashMap<>();
 
     /* SQL Data */
-    protected SelectCommand selectCommand;
-    protected FromCommand fromCommand;
+    protected Map<String, Object> commandParameters = new HashMap<>();
+    protected SelectCommand selectCommand = new SelectCommand(this, this.commandParameters);
+    protected FromCommand fromCommand = new FromCommand(this, this.commandParameters);
 
     /* Can only be instantiated by factory */
     H2Select(ExecutionContext executionContext) {
         this.executionContext = executionContext;
-        this.selectCommand = new SelectCommand();
-        this.fromCommand = new FromCommand();
     }
 
     public SelectCommand select() {
-        return this.selectCommand.getCommand();
+        return this.selectCommand;
     }
 
     public FromCommand from() {
-        return this.fromCommand.getCommand();
+        return this.fromCommand;
     }
 
     @Override
@@ -41,14 +40,13 @@ public class H2Select implements Query, SqlParameter {
         return null;
     }
 
-
     @Override
     public String toSql() {
         return null;
     }
 
     @Override
-    public UnmodifiableMap getParameters() {
+    public UnmodifiableMap getSqlParameters() {
         return null;
     }
 }

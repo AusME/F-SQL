@@ -1,24 +1,23 @@
 package name.ben.shepley.fsql.h2.query.select;
 
-import name.ben.shepley.fsql.framework.NestedBuilderAndCommand;
+import name.ben.shepley.fsql.framework.NestedBuilder;
 import name.ben.shepley.fsql.framework.SqlParameter;
 import name.ben.shepley.fsql.h2.query.H2Select;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
-public class SelectCommand implements NestedBuilderAndCommand<SelectCommand, H2Select>, SqlParameter {
+import java.util.Map;
+
+public class SelectCommand extends NestedBuilder<H2Select> implements SqlParameter {
 
     /* Parent */
     private H2Select h2Select;
 
-    @Override
-    public SelectCommand getCommand() {
-        return this;
-    }
+    /* Select Command */
+    private Map<String, Object> commandParameters;
 
-    @Override
-    public SelectCommand setParent(H2Select h2Select) {
-        this.h2Select = h2Select;
-        return this;
+    public SelectCommand(H2Select h2Select, Map<String, Object> commandParameters) {
+        super(h2Select);
+        this.commandParameters = commandParameters;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class SelectCommand implements NestedBuilderAndCommand<SelectCommand, H2S
     }
 
     @Override
-    public UnmodifiableMap getParameters() {
+    public UnmodifiableMap getSqlParameters() {
         return null;
     }
 

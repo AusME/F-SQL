@@ -4,5 +4,5 @@ import org.apache.commons.collections.map.UnmodifiableMap;
 
 public interface SqlParameter {
     public abstract String toSql();
-    public abstract UnmodifiableMap getParameters();
+    public abstract UnmodifiableMap getSqlParameters();
 }
