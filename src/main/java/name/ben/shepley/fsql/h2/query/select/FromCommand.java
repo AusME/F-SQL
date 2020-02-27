@@ -1,22 +1,19 @@
 package name.ben.shepley.fsql.h2.query.select;
 
 import name.ben.shepley.fsql.framework.NestedBuilder;
-import name.ben.shepley.fsql.framework.SqlParameter;
-import name.ben.shepley.fsql.h2.query.H2Select;
-import org.apache.commons.collections.map.UnmodifiableMap;
+import name.ben.shepley.fsql.framework.Query;
 
 import java.util.*;
 
-public class FromCommand extends NestedBuilder<H2Select> implements SqlParameter {
+public class FromCommand extends NestedBuilder<SelectQuery> implements Query {
     private static final String FROM = "FROM";
 
     private Set<String> tablesOrViews = new HashSet<>();
 
     private Map<String, Object> queryParameters;
 
-    public FromCommand(H2Select h2Select, Map<String, Object> queryParameters) {
-        super(h2Select);
-        this.queryParameters = queryParameters;
+    public FromCommand(SelectQuery selectQuery) {
+        super(selectQuery);
     }
 
     @Override
@@ -30,8 +27,9 @@ public class FromCommand extends NestedBuilder<H2Select> implements SqlParameter
     }
 
     /* Meat Methods */
-    public FromCommand from(String... tablesOrViews) {
-        this.tablesOrViews.addAll(Arrays.asList(tablesOrViews));
+    public FromCommand addTables(String... tables) {
+        this.tablesOrViews.addAll(Arrays.asList(tables));
         return this;
     }
+
 }

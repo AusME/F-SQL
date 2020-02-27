@@ -1,23 +1,22 @@
 package name.ben.shepley.fsql.h2;
 
-import name.ben.shepley.fsql.framework.Query;
 import name.ben.shepley.fsql.database.connection.H2Database;
 import name.ben.shepley.fsql.framework.QueryStream;
 import name.ben.shepley.fsql.h2.query.H2QueryFactory;
-import name.ben.shepley.fsql.h2.query.H2Select;
 import org.testng.annotations.Test;
 
 import java.sql.*;
 
-public class H2SelectTest {
+public class SelectQueryTest {
     @Test
     public void testSelect() {
         H2Database.init();
         try (Connection connection = H2Database.getConnection()) {
             QueryStream results = H2QueryFactory.createSelectQuery()
                     .select()
-                        .select("*").done()
-                        .from().from("orders").done()
+                        .addColumns("*").done()
+                    .from()
+                        .addTables("orders").done()
                     .execute();
 
 

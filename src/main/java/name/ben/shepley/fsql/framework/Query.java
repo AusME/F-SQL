@@ -1,5 +1,8 @@
 package name.ben.shepley.fsql.framework;
 
+import java.util.Map;
+
 public interface Query {
-    public abstract QueryStream execute();
+    String toSql();
+    Map<Integer, Object> getSqlParameters();
 }

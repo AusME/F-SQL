@@ -1,27 +1,49 @@
 package name.ben.shepley.fsql.h2.query.select;
 
 import name.ben.shepley.fsql.framework.NestedBuilder;
-import name.ben.shepley.fsql.framework.SqlParameter;
-import name.ben.shepley.fsql.h2.query.H2Select;
-import org.apache.commons.collections.map.UnmodifiableMap;
+import name.ben.shepley.fsql.framework.Query;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
-public class WhereCommand extends NestedBuilder<H2Select> implements SqlParameter {
-    private Map<String, Object> queryParameters;
+public class WhereCommand extends NestedBuilder<SelectQuery> implements Query {
+    /* Important Instance Variables */
+    private Map<Integer, Object> parameters = new HashMap<>();
+    private StringBuilder conditions = new StringBuilder("(");
+    private int parameterCount = 0;
 
-    public WhereCommand(H2Select h2Select, Map<String, Object> queryParameters) {
-        super(h2Select);
-        this.queryParameters = queryParameters;
+    /* Operators */
+    private static final String EQUALS = " = ";
+    
+    public WhereCommand(SelectQuery selectQuery) {
+        super(selectQuery);
     }
 
     @Override
     public String toSql() {
-        return null;
+        return conditions.append(")").toString();
     }
 
     @Override
-    public UnmodifiableMap getSqlParameters() {
-        return null;
+    public Map<Integer, Object> getSqlParameters() {
+        return Collections.unmodifiableMap(parameters);
+    }
+
+    public WhereCommand beginStatement() {
+        this.conditions.append("(");
+        return this;
+    }
+
+    public WhereCommand endStatement() {
+        this.conditions.append(")");
+        return this;
+    }
+
+    public WhereCommand equals(String operandOne, Object operandTwo) {
+        this.parameters.put(parameterCount, operandTwo);
+        this.conditions.append(operandOne).append(EQUALS).append("?");
+        this.parameterCount++;
+        return this;
     }
 }

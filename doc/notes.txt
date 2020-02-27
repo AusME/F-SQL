@@ -4,7 +4,7 @@ https://dzone.com/articles/java-dynamic-proxy
 Table t = new Table();
 Stream<Table> results =
    QueryFactory *Static Method*
-       .select(t)
+       .selectQuery(t)
        .from(t)
        .where(new SqlPredicate(t.getName(), 'eq', 'Ben'))
        .done();
@@ -12,11 +12,11 @@ Stream<Table> results =
 
 
 QueryFactory -> Produces Queries
-    #select(Object)
+    #selectQuery(Object)
     #selectFrom(Object)
-    #select(String, Integer)
-    #select(String, String)
-    #select(String[])
+    #selectQuery(String, Integer)
+    #selectQuery(String, String)
+    #selectQuery(String[])
     #insert(object)
     #insert(String[], object[]);
 
@@ -32,7 +32,7 @@ Select implements SqlOperation
 
 SelectBuilder implements SqlOperationBuilder
     selectQuery
-    #select()
+    #selectQuery()
     #from()
     #where()
     #execute()
