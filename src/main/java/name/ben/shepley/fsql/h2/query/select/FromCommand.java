@@ -5,27 +5,33 @@ import name.ben.shepley.fsql.framework.SqlParameter;
 import name.ben.shepley.fsql.h2.query.H2Select;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
-import java.util.Map;
+import java.util.*;
 
 public class FromCommand extends NestedBuilder<H2Select> implements SqlParameter {
-    /* Parent */
-    private H2Select h2Select;
+    private static final String FROM = "FROM";
 
-    /* FromCommand */
-    private Map<String, Object> commandParameters;
+    private Set<String> tablesOrViews = new HashSet<>();
 
-    public FromCommand(H2Select h2Select, Map<String, Object> commandParameters) {
+    private Map<String, Object> queryParameters;
+
+    public FromCommand(H2Select h2Select, Map<String, Object> queryParameters) {
         super(h2Select);
-        this.commandParameters = commandParameters;
+        this.queryParameters = queryParameters;
     }
 
     @Override
     public String toSql() {
-        return null;
+        return FROM + "\n\t" + String.join(",", tablesOrViews) + "\n";
     }
 
     @Override
-    public UnmodifiableMap getSqlParameters() {
-        return null;
+    public Map<Integer, Object> getSqlParameters() {
+        return  Collections.unmodifiableMap(new HashMap<>());
+    }
+
+    /* Meat Methods */
+    public FromCommand from(String... tablesOrViews) {
+        this.tablesOrViews.addAll(Arrays.asList(tablesOrViews));
+        return this;
     }
 }

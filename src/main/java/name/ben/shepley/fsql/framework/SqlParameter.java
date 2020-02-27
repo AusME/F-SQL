@@ -1,8 +1,8 @@
 package name.ben.shepley.fsql.framework;
 
-import org.apache.commons.collections.map.UnmodifiableMap;
+import java.util.Map;
 
 public interface SqlParameter {
     public abstract String toSql();
-    public abstract UnmodifiableMap getSqlParameters();
+    public abstract Map<Integer, Object> getSqlParameters();
 }
