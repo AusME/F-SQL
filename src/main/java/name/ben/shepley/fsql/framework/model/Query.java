@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.framework;
+package name.ben.shepley.fsql.framework.model;
 
 import java.util.Map;
 

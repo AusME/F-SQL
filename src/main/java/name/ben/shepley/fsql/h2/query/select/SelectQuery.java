@@ -1,6 +1,6 @@
 package name.ben.shepley.fsql.h2.query.select;
 
-import name.ben.shepley.fsql.framework.Query;
+import name.ben.shepley.fsql.framework.model.Query;
 import name.ben.shepley.fsql.h2.query.select.command.FromCommand;
 import name.ben.shepley.fsql.h2.query.select.command.SelectCommand;
 

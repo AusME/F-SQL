@@ -8,7 +8,7 @@ F-SQL primarily consists of THREE parts:
 1. Query: Stores SQL, and parameters. This is designed around specific DBMS implementations to support specific DBMS features.
 2. QueryStream: Stores the resulting information from the query execution.
    - QueryCollector: Generic collector to collect database results into models or primitives.
-3. QueryFactory: A Singleton Factory which constructs queries.
+3. Database: A Singleton Factory which exxecutes queries and returns QueryStreams.
 
 ### Examples
 COMING SOON.

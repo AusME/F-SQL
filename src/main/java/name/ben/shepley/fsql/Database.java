@@ -1,12 +1,12 @@
-package name.ben.shepley.fsql.h2.query;
+package name.ben.shepley.fsql;
 
-import name.ben.shepley.fsql.framework.Query;
-import name.ben.shepley.fsql.framework.QueryStream;
+import name.ben.shepley.fsql.framework.model.Query;
+import name.ben.shepley.fsql.framework.model.QueryStream;
 
 import java.sql.*;
 
-public class H2QueryFactory {
-    public static QueryStream executeQuery(Connection connection, Query query) throws SQLException {
+public class Database {
+    public QueryStream executeQuery(Connection connection, Query query) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query.toSql());
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
