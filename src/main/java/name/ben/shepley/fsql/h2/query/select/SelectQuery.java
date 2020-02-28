@@ -1,11 +1,8 @@
 package name.ben.shepley.fsql.h2.query.select;
 
-import name.ben.shepley.fsql.framework.ExecutionContext;
-import name.ben.shepley.fsql.framework.ExecutableQuery;
-import name.ben.shepley.fsql.framework.QueryStream;
 import name.ben.shepley.fsql.framework.Query;
-import name.ben.shepley.fsql.h2.query.select.FromCommand;
-import name.ben.shepley.fsql.h2.query.select.SelectCommand;
+import name.ben.shepley.fsql.h2.query.select.command.FromCommand;
+import name.ben.shepley.fsql.h2.query.select.command.SelectCommand;
 
 import java.util.*;
 
@@ -17,7 +14,7 @@ public class SelectQuery implements Query {
     /* OVERRIDDEN METHODS */
     @Override
     public String toSql() {
-        return null;
+        return this.selectCommand.toSql() + fromCommand.toSql();
     }
 
     @Override

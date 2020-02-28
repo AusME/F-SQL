@@ -1,7 +1,8 @@
-package name.ben.shepley.fsql.h2.query.select;
+package name.ben.shepley.fsql.h2.query.select.command;
 
 import name.ben.shepley.fsql.framework.NestedBuilder;
 import name.ben.shepley.fsql.framework.Query;
+import name.ben.shepley.fsql.h2.query.select.SelectQuery;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class WhereCommand extends NestedBuilder<SelectQuery> implements Query {
     /* Important Instance Variables */
     private Map<Integer, Object> parameters = new HashMap<>();
-    private StringBuilder conditions = new StringBuilder("(");
+    private StringBuilder conditions = new StringBuilder("");
     private int parameterCount = 0;
 
     /* Operators */
@@ -22,12 +23,12 @@ public class WhereCommand extends NestedBuilder<SelectQuery> implements Query {
 
     @Override
     public String toSql() {
-        return conditions.append(")").toString();
+        return conditions.toString();
     }
 
     @Override
     public Map<Integer, Object> getSqlParameters() {
-        return Collections.unmodifiableMap(parameters);
+        return Collections.unmodifiableMap(this.parameters);
     }
 
     public WhereCommand beginStatement() {
