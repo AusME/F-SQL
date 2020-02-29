@@ -2,6 +2,7 @@ package name.ben.shepley.fsql.h2;
 
 import name.ben.shepley.fsql.Database;
 import name.ben.shepley.fsql.database.connection.H2Database;
+import name.ben.shepley.fsql.framework.dataStructure.Table;
 import name.ben.shepley.fsql.framework.model.QueryStream;
 import name.ben.shepley.fsql.framework.util.ResultSetUtil;
 import name.ben.shepley.fsql.h2.query.select.FluentSelectQuery;
@@ -23,8 +24,10 @@ public class SelectQueryTest {
             );
 
             ResultSet resultSet = results.getResultSet();
+            Table table = ResultSetUtil.toTable(resultSet);
 
-            System.out.println(ResultSetUtil.toString(resultSet));
+            //System.out.println(ResultSetUtil.toString(resultSet));
+            System.out.println(table);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class ResultSetUtil {
     public static String toString(ResultSet resultSet) throws SQLException {
-        StringBuilder rtnString = new StringBuilder("");
+        StringBuilder rtnString = new StringBuilder();
 
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         while (resultSet.next()) {
@@ -29,18 +29,33 @@ public class ResultSetUtil {
         Table table = new Table();
 
         Set<String> columnNames = new LinkedHashSet<>();
+        Set<Integer> columnSqlTypes = new LinkedHashSet<>();
         Set<Class<?>> columnTypes = new LinkedHashSet<>();
         Set<Set<Object>> rows = new LinkedHashSet<>();
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
         /* Get Column information and first Row */
-        while (resultSet.next()) {
-            Set<Object> row = new LinkedHashSet<>();
-            for (int col = 1; col <= resultSetMetaData.getColumnCount(); col++) {
-                columnNames.add(resultSetMetaData.getColumnName(col));
-                //java.sql.Types
-                //columnTypes.add(resultSetMetaData.getColumnType(col))
-            }
+        resultSet.next();
+        Set<Object> row = new LinkedHashSet<>();
+        for (int col = 1; col <= resultSetMetaData.getColumnCount(); col++) {
+            columnNames.add(resultSetMetaData.getColumnName(col));
+            columnSqlTypes.add(resultSetMetaData.getColumnType(col));
+            row.add(resultSet.getObject(col));
         }
+        rows.add(row);
+
+        /* Get all follow on rows; */
+        while(resultSet.next()) {
+            row = new LinkedHashSet<>();
+            for (int col = 1; col <= resultSetMetaData.getColumnCount(); col++) {
+                row.add(resultSet.getObject(col));
+            }
+            rows.add(row);
+        }
+
+        table.setColumnNames(columnNames);
+        table.setColumnSqlTypes(columnSqlTypes);
+        table.setRows(rows);
 
         return table;
     }
