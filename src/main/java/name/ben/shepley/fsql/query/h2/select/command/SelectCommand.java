@@ -1,8 +1,8 @@
-package name.ben.shepley.fsql.h2.query.select.command;
+package name.ben.shepley.fsql.query.h2.select.command;
 
 import name.ben.shepley.fsql.framework.dataStructure.NestedBuilder;
 import name.ben.shepley.fsql.framework.model.Query;
-import name.ben.shepley.fsql.h2.query.select.SelectQuery;
+import name.ben.shepley.fsql.query.h2.select.SelectQuery;
 
 import java.util.*;
 
@@ -11,15 +11,13 @@ public class SelectCommand extends NestedBuilder<SelectQuery> implements Query {
 
     private Set<String> columns = new HashSet<>();
 
-    private Map<String, Object> queryParameters;
-
     public SelectCommand(SelectQuery selectQuery) {
         super(selectQuery);
     }
 
     @Override
     public String toSql() {
-        return SELECT + "\n\t" + String.join(",", columns) + "\n";
+        return SELECT + "\n\t" + String.join(",", columns);
     }
 
     @Override

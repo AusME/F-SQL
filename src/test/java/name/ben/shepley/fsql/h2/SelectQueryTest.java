@@ -5,10 +5,11 @@ import name.ben.shepley.fsql.database.connection.H2Database;
 import name.ben.shepley.fsql.framework.dataStructure.Table;
 import name.ben.shepley.fsql.framework.model.QueryStream;
 import name.ben.shepley.fsql.framework.util.ResultSetUtil;
-import name.ben.shepley.fsql.h2.query.select.FluentSelectQuery;
+import name.ben.shepley.fsql.query.h2.select.FluentSelectQuery;
 import org.testng.annotations.Test;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
 
 public class SelectQueryTest {
     @Test

@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.h2.query.select;
+package name.ben.shepley.fsql.query.h2.select;
 
 public class FluentSelectQuery {
 

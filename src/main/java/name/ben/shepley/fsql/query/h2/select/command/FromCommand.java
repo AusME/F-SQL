@@ -1,8 +1,8 @@
-package name.ben.shepley.fsql.h2.query.select.command;
+package name.ben.shepley.fsql.query.h2.select.command;
 
 import name.ben.shepley.fsql.framework.dataStructure.NestedBuilder;
 import name.ben.shepley.fsql.framework.model.Query;
-import name.ben.shepley.fsql.h2.query.select.SelectQuery;
+import name.ben.shepley.fsql.query.h2.select.SelectQuery;
 
 import java.util.*;
 
@@ -10,8 +10,6 @@ public class FromCommand extends NestedBuilder<SelectQuery> implements Query {
     private static final String FROM = "FROM";
 
     private Set<String> tablesOrViews = new HashSet<>();
-
-    private Map<String, Object> queryParameters;
 
     public FromCommand(SelectQuery selectQuery) {
         super(selectQuery);

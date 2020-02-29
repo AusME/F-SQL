@@ -1,9 +1,10 @@
-package name.ben.shepley.fsql.h2.query.select.command;
+package name.ben.shepley.fsql.query.h2.select.command;
 
 import name.ben.shepley.fsql.framework.dataStructure.NestedBuilder;
 import name.ben.shepley.fsql.framework.model.Query;
-import name.ben.shepley.fsql.h2.query.select.SelectQuery;
+import name.ben.shepley.fsql.query.h2.select.SelectQuery;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class HavingCommand extends NestedBuilder<SelectQuery> implements Query {
@@ -13,11 +14,11 @@ public class HavingCommand extends NestedBuilder<SelectQuery> implements Query {
 
     @Override
     public String toSql() {
-        return null;
+        return "";
     }
 
     @Override
     public Map<Integer, Object> getSqlParameters() {
-        return null;
+        return Collections.emptyMap();
     }
 }
