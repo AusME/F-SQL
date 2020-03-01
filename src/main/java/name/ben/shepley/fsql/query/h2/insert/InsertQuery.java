@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Map;
 
 public class InsertQuery implements Query  {
+    /* COMMANDS: */
+
     @Override
     public String toSql() {
         return "";

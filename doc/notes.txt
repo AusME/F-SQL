@@ -1,48 +1,39 @@
-https://dzone.com/articles/java-dynamic-proxy
+MySQL Sample Dataset (Sakila dataset):
+    https://dev.mysql.com/doc/sakila/en/sakila-installation.html
 
-/* The goal*/
-Table t = new Table();
-Stream<Table> results =
-   QueryFactory *Static Method*
-       .selectQuery(t)
-       .from(t)
-       .where(new SqlPredicate(t.getName(), 'eq', 'Ben'))
-       .done();
-       .execute(connection);
-
-
-QueryFactory -> Produces Queries
-    #selectQuery(Object)
-    #selectFrom(Object)
-    #selectQuery(String, Integer)
-    #selectQuery(String, String)
-    #selectQuery(String[])
-    #insert(object)
-    #insert(String[], object[]);
-
-Query
-    sqlOperation
-    sqlDialect
-    executionContext
-
-
-Select implements SqlOperation
-    columns
-    table
-
-SelectBuilder implements SqlOperationBuilder
-    selectQuery
-    #selectQuery()
-    #from()
-    #where()
-    #execute()
+Java Proxy's:
+    https://dzone.com/articles/java-dynamic-proxy
 
 
 
-QueryBuilder
-    #setExecutionContext
-    #setSqlDialect
-    #setSqlOperation
+
+Test Database Table Schema
+    All Database Types
+        Table with all database types
+    Sample Business Data
+        String primary key
+        Integer primary key
+        Composite Key
+    Stored Procedure
 
 
-QueryExecutionContext -> All details necessary to execute and return Query
+
+DataStream
+    Construct From
+        ResultSet
+        Java Stream
+        Java Collection
+
+    Collect to (return instances of):
+        Java Stream:
+            Java Stream
+        Element:
+            Number (Short, Integer, Long), Boolean, String, BigDecimal, Byte[], Object
+        Collection:
+            List, Set, Map
+        Array:
+            array
+
+    Operations (return instance of DataStream):
+        Map?
+        Join? Union? Intersection?
