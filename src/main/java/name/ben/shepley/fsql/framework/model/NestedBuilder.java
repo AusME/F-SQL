@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.framework.dataStructure;
+package name.ben.shepley.fsql.framework.model;
 
 public abstract class NestedBuilder<P> {
     private P p;

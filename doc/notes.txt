@@ -17,14 +17,23 @@ Test Database Table Schema
     Stored Procedure
 
 
+Query Result:
+    long naturalSize?
+    Table queryResult?
 
-DataStream
+
+DataStream:
     Construct From
         ResultSet
+        QueryResult
         Java Stream
         Java Collection
 
-    Collect to (return instances of):
+    Map To (really just convenience methods):
+        Element:
+            Number (Byte, Double, Float, Integer, Short, Long), Boolean, String, BigDecimal, Byte[], Character, Object
+
+    Collect To (from mapping):
         Java Stream:
             Java Stream
         Element:
@@ -32,8 +41,9 @@ DataStream
         Collection:
             List, Set, Map
         Array:
-            array
+            array of elements
 
     Operations (return instance of DataStream):
-        Map?
         Join? Union? Intersection?
+
+

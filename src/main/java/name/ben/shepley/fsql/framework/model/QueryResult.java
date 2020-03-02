@@ -1,9 +1,9 @@
-package name.ben.shepley.fsql.framework.dataStructure;
+package name.ben.shepley.fsql.framework.model;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Table {
+public class QueryResult {
     Set<String> columnNames = new LinkedHashSet<>();
     Set<Integer> columnSqlTypes = new LinkedHashSet<>();
     Set<Class<?>> columnTypes = new LinkedHashSet<>();

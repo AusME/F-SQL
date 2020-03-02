@@ -1,4 +1,4 @@
-/* Yanked from: https://www.w3resource.com/sql/sql-table.php */
+/* Yanked from: https://www.w3resource.com/sql/sql-queryResult.php */
 
 /* Create the schema: */
 CREATE TABLE AGENTS (

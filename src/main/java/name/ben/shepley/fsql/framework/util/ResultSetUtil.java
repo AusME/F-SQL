@@ -1,6 +1,6 @@
 package name.ben.shepley.fsql.framework.util;
 
-import name.ben.shepley.fsql.framework.dataStructure.Table;
+import name.ben.shepley.fsql.framework.model.QueryResult;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -25,8 +25,8 @@ public class ResultSetUtil {
         return rtnString.toString();
     }
 
-    public static Table toTable(ResultSet resultSet) throws SQLException {
-        Table table = new Table();
+    public static QueryResult toTable(ResultSet resultSet) throws SQLException {
+        QueryResult queryResult = new QueryResult();
 
         Set<String> columnNames = new LinkedHashSet<>();
         Set<Integer> columnSqlTypes = new LinkedHashSet<>();
@@ -53,11 +53,11 @@ public class ResultSetUtil {
             rows.add(row);
         }
 
-        table.setColumnNames(columnNames);
-        table.setColumnSqlTypes(columnSqlTypes);
-        table.setRows(rows);
+        queryResult.setColumnNames(columnNames);
+        queryResult.setColumnSqlTypes(columnSqlTypes);
+        queryResult.setRows(rows);
 
-        return table;
+        return queryResult;
     }
 
 }
