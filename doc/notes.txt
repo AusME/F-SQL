@@ -5,11 +5,9 @@ Java Proxy's:
     https://dzone.com/articles/java-dynamic-proxy
 
 
-
-
 Test Database Table Schema
     All Database Types
-        Table with all database types
+        Table with all queryResultsFactory types
     Sample Business Data
         String primary key
         Integer primary key
@@ -20,30 +18,33 @@ Test Database Table Schema
 Query Result:
     long naturalSize?
     Table queryResult?
+    Database statuses?
 
 
 DataStream:
-    Construct From
-        ResultSet
-        QueryResult
-        Java Stream
-        Java Collection
+    /* Construct Stream */
+    of (T t, ResultSet)
+    of (T t, QueryResult)
+    of (T t, Stream<T>)
+    of (T t, Collection<T>)
 
-    Map To (really just convenience methods):
+    /* Convert Stream */
+    <T> DataStream<T> map(T t)
         Element:
-            Number (Byte, Double, Float, Integer, Short, Long), Boolean, String, BigDecimal, Byte[], Character, Object
-
-    Collect To (from mapping):
+            Number (Byte, Double, Float, Integer, Short, Long), Boolean, String, BigDecimal, Character, Object
         Java Stream:
             Java Stream
-        Element:
-            Number (Short, Integer, Long), Boolean, String, BigDecimal, Byte[], Object
         Collection:
             List, Set, Map
         Array:
             array of elements
 
+    /* Convert T in stream then return instance of T */
+    T get(T t)
+
+    /* Perform operations then return instance of new Stream<T> TYPES MUST MATCH */
     Operations (return instance of DataStream):
         Join? Union? Intersection?
+
 
 

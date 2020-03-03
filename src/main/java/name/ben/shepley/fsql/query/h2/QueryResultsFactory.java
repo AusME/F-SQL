@@ -1,11 +1,11 @@
-package name.ben.shepley.fsql;
+package name.ben.shepley.fsql.query.h2;
 
 import name.ben.shepley.fsql.framework.model.Query;
 import name.ben.shepley.fsql.framework.model.QueryStream;
 
 import java.sql.*;
 
-public class Database {
+public class QueryResultsFactory {
     public QueryStream executeQuery(Connection connection, Query query) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query.toSql());
