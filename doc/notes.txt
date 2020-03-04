@@ -23,12 +23,12 @@ Query Result:
 
 DataStream<T> :
     /* Construct Stream */
-    of (T t, Table)
+    of (T t, QueryResult)
     of (T t, Stream<T>)
     of (T t, Collection<T>)
 
     /* Convert Stream */
-    <T> DataStream<T> map(T t)
+    <R> DataStream<R> map(R r)
         Element:
             Number (Byte, Double, Float, Integer, Short, Long), Boolean, String, BigDecimal, Character, Object
         Java Stream:

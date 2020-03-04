@@ -1,5 +1,7 @@
 package name.ben.shepley.fsql.database.connection;
 
+import name.ben.shepley.fsql.Database;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,19 +11,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class H2Database {
+public class H2Database extends Database {
     private static final String JDBC_DRIVER = "org.h2.Driver";
     private static final String DB_URL = "jdbc:h2:mem:ben;";
     private static final String DB_OPTIONS = "DB_CLOSE_DELAY=-1;IGNORECASE=TRUE";
-
     private static final String USER = "sa";
     private static final String PASS = "";
 
-    public static void init() {
-        H2Database.setupDatabase();
-    }
-
-    public static Connection getConnection() {
+    @Override
+    public Connection getConnection() {
         try {
             Class.forName(JDBC_DRIVER);
             return DriverManager.getConnection(DB_URL + DB_OPTIONS, USER, PASS);
@@ -31,7 +29,12 @@ public class H2Database {
         }
     }
 
-    private static void setupDatabase() {
+    @Override
+    public void init() {
+        this.setupDatabase();
+    }
+
+    private void setupDatabase() {
         Connection connection = getConnection();
         Statement statement = null;
         try {
@@ -60,7 +63,7 @@ public class H2Database {
         }
     }
 
-    private static String getDatabaseSchemaAndData() {
+    private String getDatabaseSchemaAndData() {
         Class<H2Database> clazz = H2Database.class;
         InputStream inputStream = clazz.getResourceAsStream("/SampleH2Database.sql");
 
