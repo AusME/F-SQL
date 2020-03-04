@@ -1,73 +1,68 @@
 package name.ben.shepley.fsql.framework.model;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
 
-public class QueryResult {
-    Set<String> columnNames = new LinkedHashSet<>();
-    Set<Integer> columnSqlTypes = new LinkedHashSet<>();
-    Set<Class<?>> columnTypes = new LinkedHashSet<>();
-    Set<Set<Object>> rows = new LinkedHashSet<>();
+public final class QueryResult {
+    private final List<String> columnNames;
+    private final List<Class<?>> columnTypes;
+    private final List<List<Object>> rows;
 
-    public Set<String> getColumnNames() {
-        return columnNames;
-    }
-    public void setColumnNames(Set<String> columnNames) {
-        this.columnNames = columnNames;
-    }
-
-    public Set<Integer> getColumnSqlTypes() {
-        return columnSqlTypes;
-    }
-    public void setColumnSqlTypes(Set<Integer> columnSqlTypes) {
-        this.columnSqlTypes = columnSqlTypes;
+    public QueryResult(List<String> columnNames, List<Class<?>> columnTypes, List<List<Object>> rows) {
+        this.columnNames = Collections.unmodifiableList(columnNames);
+        this.columnTypes = Collections.unmodifiableList(columnTypes);
+        this.rows = Collections.unmodifiableList(rows);
     }
 
-    public Set<Class<?>> getColumnTypes() {
-        return columnTypes;
-    }
-    public void setColumnTypes(Set<Class<?>> columnTypes) {
-        this.columnTypes = columnTypes;
+    /* Getters */
+    public <T> T as(Class<T> type) {
+        if (type == String.class) {
+            return (T) "Ben";
+        }
+
+        return null;
     }
 
-    public Set<Set<Object>> getRows() {
-        return rows;
+    public <T> T as(Collection<Class<T>> type) {
+
+        return null;
     }
-    public void setRows(Set<Set<Object>> rows) {
-        this.rows = rows;
+
+    public <T> T as(Class<T>[] type) {
+        return null;
+    }
+
+    public <T> Stream<T> toStream(Class<T> type) {
+        return Stream.of(this.as(type));
+    }
+
+    /* Operations */
+    public QueryResult intersection(QueryResult queryResult) {
+        return queryResult;
+    }
+
+    public QueryResult add(QueryResult queryResult) {
+        return queryResult;
+    }
+
+    public QueryResult subtract(QueryResult queryResult) {
+        return queryResult;
+    }
+
+    public QueryResult xor(QueryResult queryResult) {
+        return queryResult;
     }
 
     @Override
-    public String toString() {
-        final int cutoff = 12;
-        StringBuilder stringBuilder = new StringBuilder("TABLE: \n");
-        for(String columnName : this.columnNames) {
-            int stringLength = Math.min(columnName.length(), cutoff);
-            stringBuilder.append(columnName, 0, stringLength).append("\t");
-            if (stringLength < 12) {
-                stringBuilder.append("\t");
-            }
+    public boolean equals(Object o) {
+        if (!(o instanceof QueryResult)) {
+            return false;
         }
-        stringBuilder.append("\n");
 
-        for(Integer columnType : this.columnSqlTypes) {
-            stringBuilder.append(columnType).append("\t");
-        }
-        stringBuilder.append("\n");
+        QueryResult queryResult = (QueryResult) o;
 
-        for(Set<Object> rows : this.rows) {
-            for (Object row : rows) {
-                int stringLength = Math.min(row.toString().length(), cutoff);
-                stringBuilder.append(row.toString(), 0, stringLength).append("\t");
-
-                if (stringLength < 12) {
-                    stringBuilder.append("\t");
-                }
-            }
-            stringBuilder.append("\n");
-        }
-        stringBuilder.append("\n");
-
-        return stringBuilder.toString();
+        return true;
     }
 }

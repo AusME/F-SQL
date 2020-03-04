@@ -5,8 +5,7 @@ import name.ben.shepley.fsql.framework.model.QueryResult;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ResultSetUtil {
     public static String toString(ResultSet resultSet) throws SQLException {
@@ -26,38 +25,30 @@ public class ResultSetUtil {
     }
 
     public static QueryResult toTable(ResultSet resultSet) throws SQLException {
-        QueryResult queryResult = new QueryResult();
-
-        Set<String> columnNames = new LinkedHashSet<>();
-        Set<Integer> columnSqlTypes = new LinkedHashSet<>();
-        Set<Class<?>> columnTypes = new LinkedHashSet<>();
-        Set<Set<Object>> rows = new LinkedHashSet<>();
+        List<String> columnNames = new LinkedList<>();
+        List<Class<?>> columnTypes = new LinkedList<>();
+        List<List<Object>> rows = new LinkedList<>();
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
 
         /* Get Column information and first Row */
         resultSet.next();
-        Set<Object> row = new LinkedHashSet<>();
+        List<Object> row = new LinkedList<>();
         for (int col = 1; col <= resultSetMetaData.getColumnCount(); col++) {
             columnNames.add(resultSetMetaData.getColumnName(col));
-            columnSqlTypes.add(resultSetMetaData.getColumnType(col));
             row.add(resultSet.getObject(col));
         }
         rows.add(row);
 
         /* Get all follow on rows; */
         while(resultSet.next()) {
-            row = new LinkedHashSet<>();
+            row = new LinkedList<>();
             for (int col = 1; col <= resultSetMetaData.getColumnCount(); col++) {
                 row.add(resultSet.getObject(col));
             }
             rows.add(row);
         }
 
-        queryResult.setColumnNames(columnNames);
-        queryResult.setColumnSqlTypes(columnSqlTypes);
-        queryResult.setRows(rows);
-
-        return queryResult;
+        return new QueryResult(columnNames, columnTypes, rows);
     }
 
 }
