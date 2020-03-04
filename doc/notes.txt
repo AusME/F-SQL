@@ -21,10 +21,9 @@ Query Result:
     Database statuses?
 
 
-DataStream:
+DataStream<T> :
     /* Construct Stream */
-    of (T t, ResultSet)
-    of (T t, QueryResult)
+    of (T t, Table)
     of (T t, Stream<T>)
     of (T t, Collection<T>)
 
@@ -42,9 +41,18 @@ DataStream:
     /* Convert T in stream then return instance of T */
     T get(T t)
 
+    /* Return T */
+    T get();
+
+    /* Helper method to return Stream */
+    Stream<T> toStream();
+
+
+
     /* Perform operations then return instance of new Stream<T> TYPES MUST MATCH */
     Operations (return instance of DataStream):
         Join? Union? Intersection?
 
+    /* MetaData from original stream */
 
 
