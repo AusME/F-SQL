@@ -1,6 +1,7 @@
 package name.ben.shepley.fsql.framework.util;
 
 import name.ben.shepley.fsql.framework.model.QueryResult;
+import name.ben.shepley.fsql.framework.model.TabularData;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -25,8 +26,7 @@ public class ResultSetUtil {
     }
 
     public static QueryResult toTable(ResultSet resultSet) throws SQLException {
-        List<String> columnNames = new LinkedList<>();
-        List<Class<?>> columnTypes = new LinkedList<>();
+        Map<String, Class<?>> columns = new LinkedHashMap<>();
         List<List<Object>> rows = new LinkedList<>();
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
 
@@ -34,7 +34,8 @@ public class ResultSetUtil {
         resultSet.next();
         List<Object> row = new LinkedList<>();
         for (int col = 1; col <= resultSetMetaData.getColumnCount(); col++) {
-            columnNames.add(resultSetMetaData.getColumnName(col));
+            /*TODO: TRANSLATE TYPE */
+            columns.put(resultSetMetaData.getColumnName(col), String.class);
             row.add(resultSet.getObject(col));
         }
         rows.add(row);
@@ -48,7 +49,7 @@ public class ResultSetUtil {
             rows.add(row);
         }
 
-        return new QueryResult(columnNames, columnTypes, rows);
+        return QueryResult.as(new TabularData.TabularDataBuilder().setColumns(columns).setRows(rows).build());
     }
 
 }

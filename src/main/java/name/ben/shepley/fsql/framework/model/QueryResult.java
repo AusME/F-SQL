@@ -1,22 +1,25 @@
 package name.ben.shepley.fsql.framework.model;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Stream;
 
 public final class QueryResult {
-    private final List<String> columnNames;
-    private final List<Class<?>> columnTypes;
-    private final List<List<Object>> rows;
+    public final TabularData tabularData;
 
-    public QueryResult(List<String> columnNames, List<Class<?>> columnTypes, List<List<Object>> rows) {
-        this.columnNames = Collections.unmodifiableList(columnNames);
-        this.columnTypes = Collections.unmodifiableList(columnTypes);
-        this.rows = Collections.unmodifiableList(rows);
+    private QueryResult(TabularData tabularData) {
+        this.tabularData = tabularData;
     }
 
-    /* Getters */
+    /* Factory Methods */
+    public static QueryResult as(TabularData tabularData) {
+        return new QueryResult(tabularData);
+    }
+
+    public <T> Stream<T> toStream(Class<T> type) {
+        return Stream.of(this.as(type));
+    }
+
+    /* TODO: */
     public <T> T as(Class<T> type) {
         if (type == String.class) {
             return (T) "Ben";
@@ -25,20 +28,15 @@ public final class QueryResult {
         return null;
     }
 
-    public <T> T as(Collection<Class<T>> type) {
-
+    public <T> Collection<T> as(Collection<Class<T>> type) {
         return null;
     }
 
-    public <T> T as(Class<T>[] type) {
+    public <T> T[] as(Class<T>[] type) {
         return null;
     }
 
-    public <T> Stream<T> toStream(Class<T> type) {
-        return Stream.of(this.as(type));
-    }
-
-    /* Operations */
+    /* Operations TODO: */
     public QueryResult intersection(QueryResult queryResult) {
         return queryResult;
     }
