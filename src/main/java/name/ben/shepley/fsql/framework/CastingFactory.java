@@ -1,11 +1,26 @@
 package name.ben.shepley.fsql.framework;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public final class CastingFactory {
-    /* String, Boolean, Number (BigDecimal, Long, Integer, Short, Byte, Double, Float), Character, Object */
+    /* String, Boolean, Number (BigDecimal, Long, Integer, Short, Byte, Double, Float), LocalDate, Character, Object */
     public static <T> T cast(Object from, Class<T> to) {
-        if (to == Byte.class) {
+        if (to == String.class) {
+            if (from instanceof String) {
+                return (T) (String) from;
+            } else if (from instanceof Boolean) {
+                return (T) Boolean.toString(Boolean.valueOf((boolean) from));
+            } else if (from instanceof Number) {
+                return (T) from.toString();
+            } else if (from instanceof LocalDate) {
+                return (T) from.toString();
+            } else if (from instanceof Character) {
+                return (T) from.toString();
+            } else if (from instanceof Object) {
+                return (T) from.toString();
+            }
+        }  else if (to == Byte.class) {
             if (from instanceof String) {
                 return (T) Byte.valueOf(Byte.parseByte((String) from));
             } else if (from instanceof Boolean) {
@@ -13,10 +28,12 @@ public final class CastingFactory {
             } else if (from instanceof Number) {
                 byte b = ((Number) from).byteValue();
                 return (T) Byte.valueOf(b);
-            } else if (from instanceof Character) {
+            } else if (from instanceof LocalDate) {
                 throw new ClassCastException("I don't like you.");
-            } else if (from instanceof Object) {
+            } else if (from instanceof Character) {
                 throw new ClassCastException("I don't like you, either.");
+            } else if (from instanceof Object) {
+                throw new ClassCastException("I don't like you, more.");
             }
         } else if (to == Double.class) {
             if (from instanceof String) {
@@ -26,10 +43,12 @@ public final class CastingFactory {
             } else if (from instanceof Number) {
                 double d = ((Number) from).doubleValue();
                 return (T) Double.valueOf(d);
-            } else if (from instanceof Character) {
+            } else if (from instanceof LocalDate) {
                 throw new ClassCastException("I don't like you.");
-            } else if (from instanceof Object) {
+            } else if (from instanceof Character) {
                 throw new ClassCastException("I don't like you, either.");
+            } else if (from instanceof Object) {
+                throw new ClassCastException("I don't like you, more.");
             }
         } else if (to == Float.class) {
             if (from instanceof String) {
@@ -39,10 +58,12 @@ public final class CastingFactory {
             } else if (from instanceof Number) {
                 float f = ((Number) from).floatValue();
                 return (T) Float.valueOf(f);
-            } else if (from instanceof Character) {
+            } else if (from instanceof LocalDate) {
                 throw new ClassCastException("I don't like you.");
-            } else if (from instanceof Object) {
+            } else if (from instanceof Character) {
                 throw new ClassCastException("I don't like you, either.");
+            } else if (from instanceof Object) {
+                throw new ClassCastException("I don't like you, more.");
             }
         } else if (to == Integer.class) {
             if (from instanceof String) {
@@ -52,10 +73,12 @@ public final class CastingFactory {
             } else if (from instanceof Number) {
                 int i = ((Integer) from).intValue();
                 return (T) Integer.valueOf(i);
-            } else if (from instanceof Character) {
+            } else if (from instanceof LocalDate) {
                 throw new ClassCastException("I don't like you.");
-            } else if (from instanceof Object) {
+            } else if (from instanceof Character) {
                 throw new ClassCastException("I don't like you, either.");
+            } else if (from instanceof Object) {
+                throw new ClassCastException("I don't like you, more.");
             }
         } else if (to == Short.class) {
             if (from instanceof String) {
@@ -65,10 +88,12 @@ public final class CastingFactory {
             } else if (from instanceof Number) {
                 short s = ((Number) from).shortValue();
                 return (T) Short.valueOf(s);
-            } else if (from instanceof Character) {
+            } else if (from instanceof LocalDate) {
                 throw new ClassCastException("I don't like you.");
-            } else if (from instanceof Object) {
+            } else if (from instanceof Character) {
                 throw new ClassCastException("I don't like you, either.");
+            } else if (from instanceof Object) {
+                throw new ClassCastException("I don't like you, more.");
             }
         } else if (to == Long.class) {
             if (from instanceof String) {
@@ -78,10 +103,12 @@ public final class CastingFactory {
             } else if (from instanceof Number) {
                 long l = ((Number) from).longValue();
                 return (T) Long.valueOf(l);
-            } else if (from instanceof Character) {
+            } else if (from instanceof LocalDate) {
                 throw new ClassCastException("I don't like you.");
-            } else if (from instanceof Object) {
+            } else if (from instanceof Character) {
                 throw new ClassCastException("I don't like you, either.");
+            } else if (from instanceof Object) {
+                throw new ClassCastException("I don't like you, more.");
             }
         } else if (to == Boolean.class) {
 
