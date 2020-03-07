@@ -3,64 +3,35 @@ package name.ben.shepley.fsql.framework.model;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-public final class QueryResult {
-    public final TabularData tabularData;
+public final class QueryResult<T> {
+    public final T t;
 
-    private QueryResult(TabularData tabularData) {
-        this.tabularData = tabularData;
+    public QueryResult(T t) {
+        this.t = t;
     }
 
-    /* Factory Methods */
-    public static QueryResult as(TabularData tabularData) {
-        return new QueryResult(tabularData);
+    public T get() {
+        return this.t;
     }
 
-    public <T> Stream<T> toStream(Class<T> type) {
-        return Stream.of(this.as(type));
+    public Stream<T> toStream() {
+        return Stream.of(this.t);
     }
 
-    /* TODO: */
-    public <T> T as(Class<T> type) {
+    public <C> C as(Class<C> type) {
         if (type == String.class) {
-            return (T) "Ben";
+            return (C) "Ben";
         }
 
         return null;
     }
 
-    public <T> Collection<T> as(Collection<Class<T>> type) {
+    public <C> Collection<C> as(Collection<Class<C>> type) {
         return null;
     }
 
-    public <T> T[] as(Class<T>[] type) {
+    public <C> C[] as(Class<C>[] type) {
         return null;
     }
 
-    /* Operations TODO: */
-    public QueryResult intersection(QueryResult queryResult) {
-        return queryResult;
-    }
-
-    public QueryResult add(QueryResult queryResult) {
-        return queryResult;
-    }
-
-    public QueryResult subtract(QueryResult queryResult) {
-        return queryResult;
-    }
-
-    public QueryResult xor(QueryResult queryResult) {
-        return queryResult;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof QueryResult)) {
-            return false;
-        }
-
-        QueryResult queryResult = (QueryResult) o;
-
-        return true;
-    }
 }

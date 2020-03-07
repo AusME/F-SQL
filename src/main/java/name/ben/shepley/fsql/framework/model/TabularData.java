@@ -18,6 +18,34 @@ public class TabularData {
         return rows;
     }
 
+    /* Operations TODO: SAFE and UNSAFE */
+    public TabularData intersection(TabularData tabularData) {
+        return tabularData;
+    }
+
+    public TabularData add(TabularData tabularData) {
+        return tabularData;
+    }
+
+    public TabularData subtract(TabularData tabularData) {
+        return tabularData;
+    }
+
+    public TabularData xor(TabularData tabularData) {
+        return tabularData;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof TabularData)) {
+            return false;
+        }
+
+        TabularData queryResult = (TabularData) o;
+
+        return true;
+    }
+
     public static class TabularDataBuilder {
         private Map<String, Class<?>> columns = new LinkedHashMap<>();
         private List<List<Object>> rows = new LinkedList<>();

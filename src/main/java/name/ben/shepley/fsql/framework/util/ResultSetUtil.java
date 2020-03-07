@@ -25,7 +25,7 @@ public class ResultSetUtil {
         return rtnString.toString();
     }
 
-    public static QueryResult toTable(ResultSet resultSet) throws SQLException {
+    public static QueryResult<TabularData> toTable(ResultSet resultSet) throws SQLException {
         Map<String, Class<?>> columns = new LinkedHashMap<>();
         List<List<Object>> rows = new LinkedList<>();
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
@@ -49,7 +49,7 @@ public class ResultSetUtil {
             rows.add(row);
         }
 
-        return QueryResult.as(new TabularData.TabularDataBuilder().setColumns(columns).setRows(rows).build());
+        return new QueryResult<>(new TabularData.TabularDataBuilder().setColumns(columns).setRows(rows).build());
     }
 
 }
