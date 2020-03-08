@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.framework.util;
+package name.ben.shepley.fsql.util;
 
 import name.ben.shepley.fsql.framework.model.QueryResult;
 import name.ben.shepley.fsql.framework.model.TabularData;
@@ -8,7 +8,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
 
-public class ResultSetUtil {
+public enum ResultSetUtil {
+    SINGLETON;
+
     public static String toString(ResultSet resultSet) throws SQLException {
         StringBuilder rtnString = new StringBuilder();
 

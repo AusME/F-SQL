@@ -3,7 +3,7 @@ package name.ben.shepley.fsql.h2;
 import name.ben.shepley.fsql.framework.model.QueryResult;
 import name.ben.shepley.fsql.database.connection.H2Database;
 import name.ben.shepley.fsql.query.h2.QueryFactory;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 public class SelectQueryTest {
     @Test
