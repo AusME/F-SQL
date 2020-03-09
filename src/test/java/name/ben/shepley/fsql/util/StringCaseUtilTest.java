@@ -31,7 +31,7 @@ public class StringCaseUtilTest {
         assertThat(StringCaseUtil.CAMEL.transform(StringCaseUtil.SNAKE, TEST_SNAKE_STRING), equalTo(TEST_CAMEL_STRING));
         assertThat(StringCaseUtil.CAMEL.transform(StringCaseUtil.KEBAB, TEST_KEBAB_STRING), equalTo(TEST_CAMEL_STRING));
 
-        assertThat(StringCaseUtil.CAMEL.prepend(TEST_CAMEL_STRING, "and"), equalTo(TEST_PREPEND_CAMEL_STRING));
+        assertThat(StringCaseUtil.CAMEL.prepend("and", TEST_CAMEL_STRING), equalTo(TEST_PREPEND_CAMEL_STRING));
         assertThat(StringCaseUtil.CAMEL.append(TEST_CAMEL_STRING, "end"), equalTo(TEST_APPEND_CAMEL_STRING));
 
         assertThat(StringCaseUtil.CAMEL.parse(TEST_CAMEL_STRING), arrayWithSize(TEST_MULTI_WORD_STRING_LENGTH));
@@ -45,7 +45,7 @@ public class StringCaseUtilTest {
         assertThat(StringCaseUtil.PASCAL.transform(StringCaseUtil.SNAKE, TEST_SNAKE_STRING), equalTo(TEST_PASCAL_STRING));
         assertThat(StringCaseUtil.PASCAL.transform(StringCaseUtil.KEBAB, TEST_KEBAB_STRING), equalTo(TEST_PASCAL_STRING));
 
-        assertThat(StringCaseUtil.PASCAL.prepend(TEST_PASCAL_STRING, "and"), equalTo(TEST_PREPEND_PASCAL_STRING));
+        assertThat(StringCaseUtil.PASCAL.prepend("and", TEST_PASCAL_STRING), equalTo(TEST_PREPEND_PASCAL_STRING));
         assertThat(StringCaseUtil.PASCAL.append(TEST_PASCAL_STRING, "end"), equalTo(TEST_APPEND_PASCAL_STRING));
 
         assertThat(StringCaseUtil.PASCAL.parse(TEST_PASCAL_STRING), arrayWithSize(TEST_MULTI_WORD_STRING_LENGTH));
@@ -59,7 +59,7 @@ public class StringCaseUtilTest {
         assertThat(StringCaseUtil.SNAKE.transform(StringCaseUtil.SNAKE, TEST_SNAKE_STRING), equalTo(TEST_SNAKE_STRING));
         assertThat(StringCaseUtil.SNAKE.transform(StringCaseUtil.KEBAB, TEST_KEBAB_STRING), equalTo(TEST_SNAKE_STRING));
 
-        assertThat(StringCaseUtil.SNAKE.prepend(TEST_SNAKE_STRING, "and"), equalTo(TEST_PREPEND_SNAKE_STRING));
+        assertThat(StringCaseUtil.SNAKE.prepend("and", TEST_SNAKE_STRING), equalTo(TEST_PREPEND_SNAKE_STRING));
         assertThat(StringCaseUtil.SNAKE.append(TEST_SNAKE_STRING, "end"), equalTo(TEST_APPEND_SNAKE_STRING));
 
         assertThat(StringCaseUtil.SNAKE.parse(TEST_SNAKE_STRING), arrayWithSize(TEST_MULTI_WORD_STRING_LENGTH));
@@ -73,7 +73,7 @@ public class StringCaseUtilTest {
         assertThat(StringCaseUtil.KEBAB.transform(StringCaseUtil.SNAKE, TEST_SNAKE_STRING), equalTo(TEST_KEBAB_STRING));
         assertThat(StringCaseUtil.KEBAB.transform(StringCaseUtil.KEBAB, TEST_KEBAB_STRING), equalTo(TEST_KEBAB_STRING));
 
-        assertThat(StringCaseUtil.KEBAB.prepend(TEST_KEBAB_STRING, "and"), equalTo(TEST_PREPEND_KEBAB_STRING));
+        assertThat(StringCaseUtil.KEBAB.prepend("and", TEST_KEBAB_STRING), equalTo(TEST_PREPEND_KEBAB_STRING));
         assertThat(StringCaseUtil.KEBAB.append(TEST_KEBAB_STRING, "end"), equalTo(TEST_APPEND_KEBAB_STRING));
 
         assertThat(StringCaseUtil.KEBAB.parse(TEST_KEBAB_STRING), arrayWithSize(TEST_MULTI_WORD_STRING_LENGTH));
