@@ -8,7 +8,7 @@ public enum BeanUtils {
     SINGLETON;
 
 
-    public static List<String> getBeanFieldsNames(Class<?> bean) {
+    public static List<String> getBeanFieldNames(Class<?> bean) {
         var beanFieldsNames = new ArrayList<String>();
         Field[] fields = bean.getFields();
         boolean[] hasGetter = new boolean[fields.length];
@@ -18,10 +18,9 @@ public enum BeanUtils {
         for (int i = 0; i < fields.length; i ++) {
             String field = fields[i].getName();
             for (Method method : bean.getMethods()) {
-                if (method.getName().equalsIgnoreCase("get" + field)) {
+                if (method.getName().equals(StringCaseUtil.CAMEL.prepend("get", field))) {
                     hasGetter[i] = true;
-                }
-                else if (method.getName().equalsIgnoreCase("set" + field)) {
+                } else if (method.getName().equals(StringCaseUtil.CAMEL.prepend("set", field))) {
                     hasSetter[i] = true;
                 }
 

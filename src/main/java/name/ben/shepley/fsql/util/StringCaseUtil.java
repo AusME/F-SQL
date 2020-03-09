@@ -63,7 +63,7 @@ public enum StringCaseUtil {
         }
 
         @Override
-        public String prepend(String string, String snippet) {
+        public String prepend(String snippet, String string) {
             if (!this.is(string)) {
                 throw new StringFormatException("String does not appear to be camelCase.");
             }
@@ -134,7 +134,7 @@ public enum StringCaseUtil {
         }
 
         @Override
-        public String prepend(String string, String snippet) {
+        public String prepend(String snippet, String string) {
             if (!this.is(string)) {
                 throw new StringFormatException("String does not appear to be PascalCase.");
             }
@@ -179,7 +179,7 @@ public enum StringCaseUtil {
         }
 
         @Override
-        public String prepend(String string, String snippet) {
+        public String prepend(String snippet, String string) {
             if (!this.is(string)) {
                 throw new StringFormatException("String does not appear to be snake_case.");
             }
@@ -220,7 +220,7 @@ public enum StringCaseUtil {
         }
 
         @Override
-        public String prepend(String string, String snippet) {
+        public String prepend(String snippet, String string) {
             if (!this.is(string)) {
                 throw new StringFormatException("String does not appear to be kebab-case.");
             }
@@ -232,7 +232,7 @@ public enum StringCaseUtil {
     public abstract String[] parse(String string);
     public abstract boolean is(String string);
     public abstract String append(String string, String snippet);
-    public abstract String prepend(String string, String snippet);
+    public abstract String prepend(String snippet, String string);
 
     public static class StringFormatException extends RuntimeException {
         public StringFormatException(String message) {
