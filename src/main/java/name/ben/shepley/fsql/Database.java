@@ -2,7 +2,7 @@ package name.ben.shepley.fsql;
 
 import name.ben.shepley.fsql.framework.model.QueryResult;
 import name.ben.shepley.fsql.framework.model.Query;
-import name.ben.shepley.fsql.util.ResultSetUtil;
+import name.ben.shepley.fsql.framework.util.ResultSetUtil;
 
 import java.sql.*;
 

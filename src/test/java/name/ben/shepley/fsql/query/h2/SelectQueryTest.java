@@ -1,8 +1,7 @@
-package name.ben.shepley.fsql.h2;
+package name.ben.shepley.fsql.query.h2;
 
 import name.ben.shepley.fsql.framework.model.QueryResult;
-import name.ben.shepley.fsql.database.connection.H2Database;
-import name.ben.shepley.fsql.query.h2.QueryFactory;
+import name.ben.shepley.fsql._harness.database.h2.connection.H2Database;
 import org.junit.jupiter.api.Test;
 
 public class SelectQueryTest {

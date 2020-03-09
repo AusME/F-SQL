@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.database.model;
+package name.ben.shepley.fsql._harness.database.h2.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

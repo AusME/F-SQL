@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.util;
+package name.ben.shepley.fsql.framework.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

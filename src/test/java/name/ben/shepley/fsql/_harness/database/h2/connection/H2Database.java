@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.database.connection;
+package name.ben.shepley.fsql._harness.database.h2.connection;
 
 import name.ben.shepley.fsql.Database;
 

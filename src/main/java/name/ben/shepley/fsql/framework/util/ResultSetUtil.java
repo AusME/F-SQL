@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.util;
+package name.ben.shepley.fsql.framework.util;
 
 import name.ben.shepley.fsql.framework.model.QueryResult;
 import name.ben.shepley.fsql.framework.model.TabularData;
