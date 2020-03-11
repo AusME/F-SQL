@@ -8,6 +8,12 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class PojoDescription<T> {
+    public static class PojoException extends RuntimeException {
+        public PojoException(Exception e) {
+            super(e);
+        }
+    }
+
     private final Class<T> pojoClass;
 
     public PojoDescription(Class<T> pojoClass) {
@@ -33,14 +39,19 @@ public class PojoDescription<T> {
         return Collections.unmodifiableMap(fields);
     }
 
-    public T build(Map<String, Object> fields) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        T pojo = pojoClass.getDeclaredConstructor().newInstance();
-        for (String field : fields.keySet()) {
-            String setterName = StringCaseUtil.CAMEL.prepend("set", field);
-            Method method = pojo.getClass().getMethod(setterName, fields.get(field).getClass());
-            method.invoke(pojo, fields.get(field));
+    public T build(Map<String, Object> fields) {
+        try {
+            T pojo = pojoClass.getDeclaredConstructor().newInstance();
+            for (String field : fields.keySet()) {
+                String setterName = StringCaseUtil.CAMEL.prepend("set", field);
+                Method method = pojo.getClass().getMethod(setterName, fields.get(field).getClass());
+                method.invoke(pojo, fields.get(field));
+            }
+            return pojo;
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            /* TODO: Be more detailed about the exception here */
+            throw new PojoException(e);
         }
-        return pojo;
     }
 
 }
