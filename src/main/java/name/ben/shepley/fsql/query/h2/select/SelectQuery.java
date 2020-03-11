@@ -1,6 +1,6 @@
 package name.ben.shepley.fsql.query.h2.select;
 
-import name.ben.shepley.fsql.framework.model.Query;
+import name.ben.shepley.fsql._framework.model.Query;
 import name.ben.shepley.fsql.query.h2.select.command.*;
 
 import java.util.Collections;

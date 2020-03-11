@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.framework.util;
+package name.ben.shepley.fsql._framework.util;
 
 import org.junit.jupiter.api.Test;
 

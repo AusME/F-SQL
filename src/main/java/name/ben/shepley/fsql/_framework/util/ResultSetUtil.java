@@ -1,7 +1,7 @@
-package name.ben.shepley.fsql.framework.util;
+package name.ben.shepley.fsql._framework.util;
 
-import name.ben.shepley.fsql.framework.model.QueryResult;
-import name.ben.shepley.fsql.framework.model.TabularData;
+import name.ben.shepley.fsql._framework.wrapper.QueryResult;
+import name.ben.shepley.fsql._framework.model.TabularData;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

@@ -1,7 +1,7 @@
 package name.ben.shepley.fsql.query.h2.insert.command;
 
-import name.ben.shepley.fsql.framework.model.NestedBuilder;
-import name.ben.shepley.fsql.framework.model.Query;
+import name.ben.shepley.fsql._framework.wrapper.NestedBuilder;
+import name.ben.shepley.fsql._framework.model.Query;
 import name.ben.shepley.fsql.query.h2.insert.InsertQuery;
 
 import java.util.Collections;

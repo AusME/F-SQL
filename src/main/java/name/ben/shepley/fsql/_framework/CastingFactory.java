@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.framework;
+package name.ben.shepley.fsql._framework;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

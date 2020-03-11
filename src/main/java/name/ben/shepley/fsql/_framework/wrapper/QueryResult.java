@@ -1,4 +1,4 @@
-package name.ben.shepley.fsql.framework.model;
+package name.ben.shepley.fsql._framework.wrapper;
 
 import java.util.Collection;
 import java.util.stream.Stream;

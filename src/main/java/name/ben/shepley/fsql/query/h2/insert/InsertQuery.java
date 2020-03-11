@@ -1,6 +1,6 @@
 package name.ben.shepley.fsql.query.h2.insert;
 
-import name.ben.shepley.fsql.framework.model.Query;
+import name.ben.shepley.fsql._framework.model.Query;
 
 import java.util.Collections;
 import java.util.Map;
