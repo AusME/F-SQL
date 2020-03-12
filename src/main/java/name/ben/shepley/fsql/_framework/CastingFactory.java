@@ -7,49 +7,58 @@ import java.time.temporal.Temporal;
 import java.util.Optional;
 
 @SuppressWarnings("unchecked")
-public final class CastingFactory {
+public enum CastingFactory {
+    SINGLETON;
     /* https://www.cis.upenn.edu/~bcpierce/courses/629/jdkdocs/guide/jdbc/getstart/mapping.doc.html */
+
     /*   String,
-     *   Character,
-     *   Boolean,
-     *   byte[],
-     *   Number (BigDecimal, Long, Integer, Short, Byte, Double, Float),
+     *   char Character,
+     *   boolean Boolean,
+     *   byte[] Byte[],
+     *   Number: (BigDecimal, Long, Integer, Short, Byte, Double, Float),
      *   Temporal (LocalDate, LocalTime LocalDateTime),
      *   Date (java.util.date, java.sql.date)
      */
 
-    public <T> Optional<T> cast(Object from, Class<T> to) {
-        /* FROM */
-            /* TO */
-            /* ELSE Optional.empty() */
+
+    public static <T> Optional<T> cast(String from, Class<T> to) {
+        if (from == null || to == null) {
+            return Optional.empty();
+        } else if (to == char.class || to == Character.class) {
+            return (Optional<T>) Optional.of(from.charAt(0));
+        } else if (to == boolean.class || to == Boolean.class) {
+            return (Optional<T>) Optional.of(from.equalsIgnoreCase("true") || from.equalsIgnoreCase("Y") || from.equalsIgnoreCase("YES"));
+        } else if (to == byte[].class || to == Byte[].class) {
+            return (Optional<T>) Optional.of(from.getBytes());
+        } else if (to.cast(Number.class) instanceof Number) {
+            System.out.println("yay");
+            return Optional.empty();
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public static <T> Optional<T> cast(Character from, Class<T> to) {
         return Optional.empty();
     }
 
-    private <T> T cast(String string, Class<T> to) {
-        return null;
+    public static <T> Optional<T> cast(Boolean from, Class<T> to) {
+        return Optional.empty();
     }
 
-    private <T> T cast(Character character, Class<T> to) {
-        return null;
+    public static <T> Optional<T> cast(Number from, Class<T> to) {
+        return Optional.empty();
     }
 
-    private <T> T cast(Boolean bool, Class<T> to) {
-        return null;
+    public static <T> Optional<T> cast(Temporal from, Class<T> to) {
+        return Optional.empty();
     }
 
-    private <T> T cast(Number number, Class<T> to) {
-        return null;
+    public static <T> Optional<T> cast(java.util.Date from, Class<T> to) {
+        return Optional.empty();
     }
 
-    private <T> T cast(byte[] bytes, Class<T> to) {
-        return null;
-    }
-
-    private <T> T cast(Temporal temporal, Class<T> to) {
-        return null;
-    }
-
-    private <T> T cast(java.util.Date date, Class<T> to) {
-        return null;
+    public static <T> Optional<T> cast(byte[] from, Class<T> to) {
+        return Optional.empty();
     }
 }
